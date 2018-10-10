@@ -5,15 +5,20 @@ def to_rna(dna_strand):
     # return the new string
 
     # Transcription dictionary: the key is the DNA letter, the RNA is the value
-    transcription = {'G':'C', 'C':'G', 'T':'A', 'A':'U'}
+    transcriptionKEY = {'G':'C', 'C':'G', 'T':'A', 'A':'U'}
 
     broken = list(dna_strand) # convert string to list
     transcribed = [] #initialize the list
 
     for dna in broken:
-        transcribed.append(transcription[dna])
+        if dna in transcriptionKEY:
+            transcribed.append(transcriptionKEY[dna])
+        else:
+            raise Exception('Please enter valid DNA codes.')
 
-    return ("".join(transcribed))
+    return (''.join(transcribed))
+
 
 if __name__ == '__main__':
-    to_rna("GC")
+    pleaseTranscribe = input('Please enter DNA to be transcribed to RNA: ')
+    to_rna(pleaseTranscribe)
